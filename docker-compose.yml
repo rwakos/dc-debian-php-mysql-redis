@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  web:
+    image: richardreveron1/debian:1.05
+    container_name: debian
+    volumes:
+      - ./html:/var/www/html/:delegated
+    ports:
+      - 80:80
+
+  redis:
+    image: redis
+    ports:
+      - 6379:6379
+
+  mysql:
+    build: ./mysql
+#    image: dan0mau/devuan-ascii-mariadb
+    volumes:
+      - ./mysql/data:/var/lib/mysql:delegated
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASS}
+
+    ports:
+      - 3306:3306
