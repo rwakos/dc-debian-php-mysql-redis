@@ -2,7 +2,7 @@ version: '3'
 
 services:
   web:
-    image: richardreveron1/debian:1.07
+    image: richardreveron1/debian:1.08
     container_name: debian-and-compose
     volumes:
 #    Change the left part here if you are using a framework like laravel to start there, or.. change the apache virtual host
