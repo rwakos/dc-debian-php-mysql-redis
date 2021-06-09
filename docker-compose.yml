@@ -2,9 +2,10 @@ version: '3'
 
 services:
   web:
-    image: richardreveron1/debian:1.05
+    image: richardreveron1/debian:1.07
     container_name: debian
     volumes:
+#    Change the left part here if you are using a framework like laravel to start there, or.. change the apache virtual host
       - ./html:/var/www/html/:delegated
     ports:
       - 80:80
@@ -16,7 +17,6 @@ services:
 
   mysql:
     build: ./mysql
-#    image: dan0mau/devuan-ascii-mariadb
     volumes:
       - ./mysql/data:/var/lib/mysql:delegated
     environment:
