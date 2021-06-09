@@ -5,7 +5,7 @@
 # Changes to this file will be preserved when updating the Debian package.
 #
 
-source /usr/share/mysql/debian-start.inc.sh
+source /usr/share/mysql/debian-and-compose-start.inc.sh
 
 if [ -f /etc/default/mysql ]; then
   . /etc/default/mysql
