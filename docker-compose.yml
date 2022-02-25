@@ -6,14 +6,18 @@ services:
     container_name: debian
     volumes:
 #    Change the left part here if you are using a framework like laravel to start there, or.. change the apache virtual host
-      - ./html:/var/www/html/:delegated
+      - ${WWW_PATH}:/var/www/html/:delegated
+      - ./apache:/etc/apache2/sites-enabled:delegated
     ports:
       - 80:80
-
+    networks:
+      - overlay
   redis:
     image: redis
     ports:
       - 6379:6379
+    networks:
+      - overlay
 
   mysql:
     build: ./mysql
@@ -24,6 +28,10 @@ services:
       MYSQL_DATABASE: ${DB_NAME}
       MYSQL_USER: ${DB_USER}
       MYSQL_PASSWORD: ${DB_PASS}
+    networks:
+      - overlay
 
     ports:
       - 3306:3306
+networks:
+  overlay:
